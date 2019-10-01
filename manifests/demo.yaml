@@ -1,17 +1,17 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: spinnaker-demo-config
+  name: backend-config
   namespace: default
 data:
-  NEW_FEATURE: "t9rjkkhkkkue"
+  NEW_FEATURE: "true"
 
 ---
 
-apiVersion: apps/v1beta2
+apiVersion: v1
 kind: Deployment
 metadata:
-  name: spinnaker-demo
+  name: backend
   namespace: default
   labels:
     source: demo
@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
       - name: primary
-        image: index.docker.io/lwander/spin-kub-v2-demo
+        image: gcr.io/gordion-2/github.com/gordion-beam/gordion-backend
         ports:
         - containerPort: 8000
         readinessProbe:
